@@ -43,6 +43,12 @@ jobs:
           zipStorePath=wrapper/dists
           EOF
 
+          cat > gradle.properties << 'EOF'
+          android.useAndroidX=true
+          android.enableJetifier=true
+          org.gradle.jvmargs=-Xmx2048m
+          EOF
+
           cat > settings.gradle << 'EOF'
           pluginManagement {
               repositories {
@@ -74,11 +80,11 @@ jobs:
           }
           android {
               namespace 'com.stockapp'
-              compileSdk 34
+              compileSdk 33
               defaultConfig {
                   applicationId "com.stockapp.dashboard"
                   minSdk 21
-                  targetSdk 34
+                  targetSdk 33
                   versionCode 1
                   versionName "1.0"
               }
